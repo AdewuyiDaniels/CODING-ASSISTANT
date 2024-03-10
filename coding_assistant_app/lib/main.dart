@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -25,33 +23,33 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Coding Assistant'),
+          title: const Text('Coding Assistant'),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Press the button and speak:',
               ),
               IconButton(
-                icon: Icon(Icons.mic),
+                icon: const Icon(Icons.mic),
                 onPressed: () async {
                   try {
                     // Simulate voice data (replace with actual voice input)
-                    String voiceData = "voice_data.wav";
+                    const String voiceData = "voice_data.wav";
 
                     // Send voice data to the WebSocket server
                     channel.sink.add(voiceData);
 
                     // Receive response from the server
-                    String response = await channel.stream.first;
+                    final String response = await channel.stream.first;
 
                     // Handle the response (you can update the UI here)
                     print("Response: $response");
                   } catch (e) {
+                    // Handle errors using a logging framework (e.g., logger package)
                     print("Error: $e");
-                    // Handle errors, e.g., show an error message to the user
                   }
                 },
               ),
